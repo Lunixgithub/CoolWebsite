@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+
+
+<script src="{{ url_for('static', filename='script.js') }}"></script>
+
+
+<p class="d-inline-flex gap-1">
+  <button type="button" class="btn active" data-bs-toggle="button" aria-pressed="true">Active button</button>
+  <button type="button" class="btn" disabled data-bs-toggle="button">inactive button</button>
+</p>
+
+
+
+<input type="button" class="btn btn-info" value="Go to login" onclick="goLogin()"></input>
+
+<h3>Click the button:</h3>
+<button id="greetBtn" onclick="greet()">Hallo</button>
+
+<p id="message" style="color: green;"></p>
+
+
+<div class="dropdown">
+  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" 
+          data-bs-toggle="dropdown" aria-expanded="false">
+    Dropdown button
+  </button>
+  <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+    <li><a class="dropdown-item" href="#" id="action1">login</a></li>
+    <li><a class="dropdown-item" href="#" id="action2">Another action</a></li>
+    <li><a class="dropdown-item" href="#" id="action3">Something else here</a></li>
+  </ul>
+</div>
+
+
+
+
+
+{% endblock %}
