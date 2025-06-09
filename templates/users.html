@@ -7,7 +7,7 @@
 <h1>Registered Users</h1>
 <ul>
     {% for user in users %}
-        <li>{{ user.username }} {{ user.password }}</li>
+        <li> id:  {{user.id}} username: {{ user.username }} password: {{ user.password }}</li>
     {% else %}
         <li>No users found.</li>
     {% endfor %}
