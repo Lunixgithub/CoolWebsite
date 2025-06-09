@@ -5,38 +5,34 @@
 {% block content %}
 
 
-<script src="{{ url_for('static', filename='script.js') }}"></script>
-
-
-<p class="d-inline-flex gap-1">
-  <button type="button" class="btn active" data-bs-toggle="button" aria-pressed="true">Active button</button>
-  <button type="button" class="btn" disabled data-bs-toggle="button">inactive button</button>
-</p>
+<script src="{{ url_for('static', filename='main.js') }}"></script>
+<link rel="stylesheet" href="{{ url_for('static', filename='default_ui.css') }}">
 
 
 
-<input type="button" class="btn btn-info" value="Go to login" onclick="goLogin()"></input>
-
-<h3>Click the button:</h3>
-<button id="greetBtn" onclick="greet()">Hallo</button>
-
-<p id="message" style="color: green;"></p>
+<div>
+  <input type="button" value="about" class="cool-button" onclick="goAbout()">
+  <input type="button" value="Go to login" class="cool-button" onclick="goLogin()">
 
 
-<div class="dropdown">
-  <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton"  
+<div class="dropdown" style="margin-top: 10px;">
+  <button class="tn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton"  
           data-bs-toggle="dropdown" aria-expanded="false">
     Dropdown button
   </button color:blue>
-  <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton" >
+  <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton" mar >
     <li><a class="dropdown-item" href="#" id="action1" style="color: blue;">login</a></li>
     <li><a class="dropdown-item" href="#" id="action2">hehe</a></li>
     <li><a class="dropdown-item" href="#" id="action3">hehehe</a></li>
   </ul>
 </div>
 
-
-
-
+<div style="display: flex; flex-direction: column; align-items: flex-end;">
+  <h1 style="color: blue;">Introduction video</h1>
+  <video width="320" height="240" controls>
+    <source src="{{ url_for('static', filename='rick.mp4') }}" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
+</div>
 
 {% endblock %}
