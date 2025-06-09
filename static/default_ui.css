@@ -1,0 +1,17 @@
+.cool-button {
+  background: linear-gradient(135deg, #6a11cb, #2575fc);
+  color: white;
+  border: none;
+  padding: 12px 28px;
+  font-size: 18px;
+  font-weight: bold;
+  cursor: pointer;
+  border-radius: 30px;
+  box-shadow: 0 8px 15px rgba(37, 117, 252, 0.3);
+  transition: all 0.3s ease;
+}
+
+.cool-button:hover {
+  background: linear-gradient(135deg, #2575fc, #6a11cb);
+  box-shadow: 0 12px 20px rgba(37, 117, 252, 0.6);
+}
