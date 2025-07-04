@@ -1,5 +1,5 @@
 **LunixWebsite**
 
-#my website for learning web development
+my website for learning web development
 
 
