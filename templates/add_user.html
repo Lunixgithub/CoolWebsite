@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{% block title %}Add User{% endblock %}
+
+{% block content %}
+<div class="container mt-5" style="max-width: 500px;">
+    <h2 class="mb-4 text-center">Add New User</h2>
+
+    <form method="POST">
+        <div class="mb-3">
+            <label for="username" class="form-label">Username</label>
+            <input 
+                type="text" 
+                name="username" 
+                id="username" 
+                class="form-control" 
+                required 
+                placeholder="Enter username"
+            >
+        </div>
+
+        <div class="mb-3">
+            <label for="password" class="form-label">Password</label>
+            <input 
+                type="password" 
+                name="password" 
+                id="password" 
+                class="form-control" 
+                required 
+                placeholder="Enter password"
+            >
+        </div>
+
+        <button type="submit" class="btn btn-primary w-100">Add User</button>
+    </form>
+
+    <div class="mt-3 text-center">
+        <a href="{{ url_for('users') }}">← Back to user list</a>
+    </div>
+</div>
+{% endblock %}
+
