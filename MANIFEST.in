@@ -1,0 +1,4 @@
+include main.py
+recursive-include templates *
+recursive-include static *
+recursive-include instance *
