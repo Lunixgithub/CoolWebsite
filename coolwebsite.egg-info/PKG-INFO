@@ -1,0 +1,15 @@
+Metadata-Version: 2.4
+Name: coolwebsite
+Version: 0.1.0
+Summary: A Flask web app
+Requires-Python: >=3.12
+Description-Content-Type: text/markdown
+Requires-Dist: flask>=3.1.1
+Requires-Dist: flask-login>=0.6.3
+Requires-Dist: flask-sqlalchemy>=3.1.1
+
+**LunixWebsite**
+
+my website for learning web development
+
+
