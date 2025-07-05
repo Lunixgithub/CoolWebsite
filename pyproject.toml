@@ -1,7 +1,7 @@
 [project]
 name = "coolwebsite"
 version = "0.1.0"
-description = "Add your description here"
+description = "A Flask web app"
 readme = "README.md"
 requires-python = ">=3.12"
 dependencies = [
@@ -9,3 +9,14 @@ dependencies = [
     "flask-login>=0.6.3",
     "flask-sqlalchemy>=3.1.1",
 ]
+
+[tool.setuptools]
+include-package-data = true
+
+[tool.setuptools.packages.find]
+where = ["."]
+exclude = ["static", "templates", "instance"]
+
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
