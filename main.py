@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, url_for, session, flash
+from flask import Flask, render_template, request, redirect, url_for, session, flash,g
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column
 from functools import wraps
@@ -111,6 +111,30 @@ def users():
 @app.route('/about')
 def about():
     return render_template("about.html")
+
+
+@app.route("/profile")
+def profile():
+    user_id = session.get("user_id")
+    if not user_id:
+        flash("You need to log in to view your profile.", "warning")
+        return redirect(url_for("login"))
+    
+    user = db.session.get(User, user_id)
+    if not user:
+        flash("User not found.", "danger")
+        return redirect(url_for("login"))
+
+    return render_template("profile.html", user=user)
+
+
+@app.context_processor
+def inject_current_user():
+    user = None
+    user_id = session.get("user_id")
+    if user_id:
+        user = db.session.get(User, user_id)
+    return dict(current_user=user)
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", debug=True, port=5000)
