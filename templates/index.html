@@ -10,6 +10,11 @@
 
 
 
+{% if current_user %}
+    <p><strong>{{ current_user.username }}</strong> </p>
+{% endif %}
+
+<hr>
 <div>
   <input type="button" value="about" class="cool-button" onclick="goAbout()">
   <input type="button" value="Go to login" class="cool-button" onclick="goLogin()">
