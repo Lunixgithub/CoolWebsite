@@ -1,8 +1,9 @@
 from flask import Flask, render_template, request, redirect, url_for, session, flash,g
 from flask_sqlalchemy import SQLAlchemy
-from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column
+from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column, relationship, foreign
 from functools import wraps
 from werkzeug.security import generate_password_hash, check_password_hash
+from sqlalchemy import ForeignKey
 
 app = Flask(__name__)
 app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///database.db"
@@ -12,10 +13,22 @@ class Base(DeclarativeBase):
 
 db = SQLAlchemy(app, model_class=Base)
 
+
+#User database to implement several users
 class User(db.Model):
     id: Mapped[int] = mapped_column(primary_key=True)
     username: Mapped[str] = mapped_column(unique=True)
     password: Mapped[str] = mapped_column()
+
+#Post database to implement several posts
+class Post(db.Model):
+    id: Mapped[int] = mapped_column(primary_key=True)
+    title: Mapped[str] = mapped_column(nullable=False)
+    content: Mapped[str] = mapped_column(nullable=False)
+    author_id: Mapped[int] = mapped_column(ForeignKey("user.id"), nullable=False)
+    author: Mapped["User"] = relationship(backref="posts")
+
+
 
 # Initialize DB and create example users with hashed passwords
 with app.app_context():
@@ -72,29 +85,28 @@ def login():
 
     return render_template("login.html")
 
-@app.route('/add_user', methods=['GET', 'POST'])
-@admin_required
-def add_user():
+@app.route('/register', methods=['GET', 'POST'])
+def register():
     if request.method == "POST":
         username = request.form.get("username", "").strip()
         password = request.form.get("password", "").strip()
 
         if not username or not password:
             flash("Both fields are required.", "warning")
-            return redirect(url_for("add_user"))
+            return redirect(url_for("register"))
 
         if db.session.scalar(db.select(User).filter_by(username=username)):
             flash("Username already exists.", "danger")
-            return redirect(url_for("add_user"))
+            return redirect(url_for("register"))
 
         hashed_pw = generate_password_hash(password)
         new_user = User(username=username, password=hashed_pw)
         db.session.add(new_user)
         db.session.commit()
         flash("User added successfully!", "success")
-        return redirect(url_for("users"))
+        return redirect(url_for("index"))
 
-    return render_template("add_user.html")
+    return render_template("register.html")
 
 @app.route('/logout')
 def logout():
@@ -126,6 +138,37 @@ def profile():
         return redirect(url_for("login"))
 
     return render_template("profile.html", user=user)
+
+@app.route('/create_post', methods=['GET', 'POST'])
+def create_post():
+    user_id = session.get("user_id")
+    if not user_id:
+        flash("You must be logged in to create a post.", "warning")
+        return redirect(url_for("login"))
+
+    if request.method == "POST":
+        title = request.form.get("title", "").strip()
+        content = request.form.get("content", "").strip()
+
+        if not title or not content:
+            flash("Title and content are required.", "warning")
+            return redirect(url_for("create_post"))
+
+        post = Post(title=title, content=content, author_id=user_id)
+        db.session.add(post)
+        db.session.commit()
+
+        flash("Post created successfully!", "success")
+        return redirect(url_for("posts"))
+
+    return render_template("create_post.html")
+
+
+@app.route('/posts')
+def posts():
+    posts = db.session.scalars(db.select(Post)).all()
+    return render_template("posts.html", posts=posts)
+
 
 
 @app.context_processor

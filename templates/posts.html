@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>All Blog Posts</h2>
+
+{% for post in posts %}
+    <div style="border: 1px solid #ccc; padding: 10px; margin: 10px 0;">
+        <h3>{{ post.title }}</h3>
+        <p>{{ post.content }}</p>
+        <small>Author: {{ post.author.username }}</small>
+    </div>
+{% else %}
+    <p>No posts yet.</p>
+{% endfor %}
+{% endblock %}

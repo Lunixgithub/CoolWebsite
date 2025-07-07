@@ -18,20 +18,21 @@
 <div>
   <input type="button" value="about" class="cool-button" onclick="goAbout()">
   <input type="button" value="Go to login" class="cool-button" onclick="goLogin()">
-
-
+  <input type ="button" value="Posts" class="cool-button" onclick="location.href='{{ url_for('posts') }}'">
+  <input type="button" value="create Post" class = "cool-button" onclick="location.href='{{ url_for('create_post') }}'">
+<!-- 
 <div class="dropdown" style="margin-top: 10px;">
-  <button class="tn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton"  
+  <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton"  
           data-bs-toggle="dropdown" aria-expanded="false">
     Dropdown button
-  </button color:blue>
-  <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton" mar >
+  </button>
+  <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
     <li><a class="dropdown-item" href="#" id="action1" style="color: blue;">login</a></li>
     <li><a class="dropdown-item" href="#" id="action2">hehe</a></li>
     <li><a class="dropdown-item" href="#" id="action3">hehehe</a></li>
   </ul>
 </div>
-
+-->
 <div style="display: flex; flex-direction: column; align-items: flex-end;">
   <h1 style="color: blue;">Introduction video</h1>
   <video width="320" height="240" controls>
@@ -40,4 +41,5 @@
   </video>
 </div>
 
+<a href="{{ url_for('posts') }}" class="btn btn-secondary mt-3">View Posts</a>
 {% endblock %}
