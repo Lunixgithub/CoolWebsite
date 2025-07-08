@@ -31,15 +31,7 @@ class Post(db.Model):
 
 
 
-# Initialize DB and create example users with hashed passwords
-with app.app_context():
-    db.drop_all()
-    db.create_all()
 
-    db.session.add(User(username="example", password=generate_password_hash("abc")))
-    db.session.add(User(username="example2", password=generate_password_hash("123")))
-    db.session.add(User(username="admin", password=generate_password_hash("abc")))
-    db.session.commit()
 
 # Admin-only implementation
 def admin_required(f):
@@ -181,6 +173,11 @@ def inject_current_user():
     return dict(current_user=user)
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", debug=True, port=5000)
+    # Initialize DB and create example users with hashed passwords
+    with app.app_context():
+        
+        db.create_all()
+
+    app.run(host="0.0.0.0", debug=True, port=81)
 
 
