@@ -1,9 +1,10 @@
-from flask import Flask, render_template, request, redirect, url_for, session, flash,g
-from flask_sqlalchemy import SQLAlchemy
-from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column, relationship, foreign
 from functools import wraps
-from werkzeug.security import generate_password_hash, check_password_hash
+
+from flask import Flask, flash, g, redirect, render_template, request, session, url_for
+from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import ForeignKey
+from sqlalchemy.orm import DeclarativeBase, Mapped, foreign, mapped_column, relationship
+from werkzeug.security import check_password_hash, generate_password_hash
 
 app = Flask(__name__)
 app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///database.db"
