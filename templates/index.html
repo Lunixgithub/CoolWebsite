@@ -15,17 +15,32 @@
 
 <hr>
 <div>
-  <nav class="navbar navbar-light" style="background-color: #e3f2fd;">
-    <form class="form-inline">
-      <input type="button" value="about" class="cool-button" onclick="goAbout()">
-      <input type="button" value="Go to login" class="cool-button" onclick="goLogin()">
-      <input type ="button" value="Posts" class="cool-button" onclick="location.href='{{ url_for('posts') }}'">
-      <input type="button" value="create Post" class = "cool-button" onclick="location.href='{{ url_for('create_post') }}'">
-      <input type="button" value="View Profile" class = "cool-button" onclick="location.href='{{ url_for('profile') }}'">
-      
-    </form>
-  </nav>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+      <!-- Static buttons -->
+      <form class="d-flex me-auto align-items-center">
+        <input type="button" value="About" class="cool-button" onclick="goAbout()">
+        <input type="button" value="Go to Login" class="cool-button" onclick="goLogin()">
+        <input type="button" value="Posts" class="cool-button" onclick="location.href='{{ url_for('posts') }}'">
+        <input type="button" value="Create Post" class="cool-button" onclick="location.href='{{ url_for('create_post') }}'">
+        <input type="button" value="View Profile" class="cool-button" onclick="location.href='{{ url_for('profile') }}'">
+      </form>
 
+      <!-- User dropdown -->
+      <div class="dropdown">
+        <button class="cool-button" type="button" id="userMenu" data-bs-toggle="dropdown" aria-expanded="false">
+          User
+        </button>
+        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userMenu">
+          <li><a class="dropdown-item" href="/login">Login</a></li>
+          <li><a class="dropdown-item" href="/profile">View Profile</a></li>
+          <li><hr class="dropdown-divider"></li>
+          <li><button class="dropdown-item" id="logoutBtn" onclick="logout()">Logout</button></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+</div>
 
 <!-- 
 <div class="dropdown" style="margin-top: 10px;">
