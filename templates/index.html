@@ -6,7 +6,6 @@
 
 
 <script src="{{ url_for('static', filename='main.js') }}"></script>
-<link rel="stylesheet" href="{{ url_for('static', filename='default_ui.css') }}">
 
 
 
@@ -16,10 +15,18 @@
 
 <hr>
 <div>
-  <input type="button" value="about" class="cool-button" onclick="goAbout()">
-  <input type="button" value="Go to login" class="cool-button" onclick="goLogin()">
-  <input type ="button" value="Posts" class="cool-button" onclick="location.href='{{ url_for('posts') }}'">
-  <input type="button" value="create Post" class = "cool-button" onclick="location.href='{{ url_for('create_post') }}'">
+  <nav class="navbar navbar-light" style="background-color: #e3f2fd;">
+    <form class="form-inline">
+      <input type="button" value="about" class="cool-button" onclick="goAbout()">
+      <input type="button" value="Go to login" class="cool-button" onclick="goLogin()">
+      <input type ="button" value="Posts" class="cool-button" onclick="location.href='{{ url_for('posts') }}'">
+      <input type="button" value="create Post" class = "cool-button" onclick="location.href='{{ url_for('create_post') }}'">
+      <input type="button" value="View Profile" class = "cool-button" onclick="location.href='{{ url_for('profile') }}'">
+      
+    </form>
+  </nav>
+
+
 <!-- 
 <div class="dropdown" style="margin-top: 10px;">
   <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton"  
