@@ -1,5 +1,7 @@
 {% extends "base.html" %}
 
+{% block title %}Posts{% endblock %}
+
 {% block content %}
 <div class="container mt-4">
   <h2>Blog Posts</h2>
@@ -16,5 +18,13 @@
     <p>No posts yet.</p>
   {% endfor %}
 </div>
+
+<div>
+<input type="button" class="cool-button" value="return" onclick="location.href='{{ url_for('index') }}'">
+
+
+</div>
+
+
 {% endblock %}
 
